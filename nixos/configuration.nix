@@ -5,10 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
 
   # Bootloader.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -92,9 +88,11 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+  users.groups.emil = {};
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.emil = {
+    #group = [ "emil" ];
     isNormalUser = true;
     description = "Emil Engberg";
     extraGroups = [ "networkmanager" "wheel" ];
